@@ -28,6 +28,23 @@ export function FacebookLogo(props) {
   )
 }
 
+export function SearchIcon(props) {
+  return (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+      clipRule="evenodd"
+    />
+  </svg>
+  )
+}
+
 export function HomeIcon(props) {
   return (
     <svg
@@ -108,3 +125,140 @@ export function GroupIcon(props) {
     </svg>
   )
 }
+
+export function MenuIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M0 0h4v4H0V0zm0 6h4v4H0V6zm0 6h4v4H0v-4zM6 0h4v4H6V0zm0 6h4v4H6V6zm0 6h4v4H6v-4zm6-12h4v4h-4V0zm0 6h4v4h-4V6zm0 6h4v4h-4v-4z"
+        fillRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+export function MessengerIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12.002 2C6.369 2 2 6.126 2 11.701c0 2.916 1.195 5.435 3.14 7.174.162.146.26.349.268.57l.056 1.78a.798.798 0 001.121.705l1.986-.875a.81.81 0 01.533-.04c.912.25 1.883.386 2.895.386C17.63 21.4 22 17.275 22 11.7 22 6.125 17.632 2 12.002 2zm5.25 7.579L14.75 13.55a1.28 1.28 0 01-1.85.342l-1.992-1.493a.513.513 0 00-.615 0l-2.688 2.04c-.356.273-.828-.157-.589-.536L9.52 9.932a1.28 1.28 0 011.85-.342l1.992 1.493a.514.514 0 00.614 0l2.688-2.04c.36-.277.832.153.589.536z"
+        fill="#000"
+      />
+    </svg>
+  )
+}
+
+export function NotificationIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6.313 12.463C6.2 9.293 8.61 6.625 11.701 6.5c3.091.125 5.501 2.792 5.388 5.963 0 1.317 1.395 2.6 1.436 3.92v.056c.03.846-.613 1.557-1.437 1.59h-3.112a2.583 2.583 0 01-.666 1.747 2.162 2.162 0 01-1.609.724 2.162 2.162 0 01-1.609-.724 2.582 2.582 0 01-.666-1.747H6.313c-.824-.033-1.467-.744-1.437-1.59v-.056c.042-1.316 1.437-2.602 1.437-3.92z"
+        stroke="#000"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.426 17.279a.75.75 0 000 1.5v-1.5zm4.55 1.5a.75.75 0 000-1.5v1.5zm-1.3-13.529a.75.75 0 000-1.5v1.5zm-1.95-1.5a.75.75 0 000 1.5v-1.5zm-1.3 15.029h4.55v-1.5h-4.55v1.5zm3.25-15.029h-1.95v1.5h1.95v-1.5z"
+        fill="#000"
+      />
+    </svg>
+  )
+}
+
+export function FriendIcon(props) {
+  return (
+    <svg
+      fill="#697cb5"
+      viewBox="-3 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="#697cb5"
+      {...props}
+    >
+      <path d="M17.25 20.5c1.281.719 2 1.906 1.875 3.125-.063.75-.031.75-1 .875-.594.063-4.375.094-8.219.094-4.375 0-8.938-.031-9.281-.125-1.281-.344-.531-2.719 1.156-3.844 1.344-.844 4.063-2.156 4.813-2.313 1.031-.219 1.156-.875 0-2.844-.25-.469-.531-1.813-.563-3.25C6 9.905 6.406 8.343 8.437 7.562a3.977 3.977 0 011.219-.188c1.344 0 2.594.75 3.125 1.844.719 1.469.375 5.313-.375 6.719-.906 1.594-.813 2.094.188 2.344.625.156 2.688 1.125 4.656 2.219zm6.844-1.969c1 .531 1.563 1.5 1.469 2.438-.031.563-.031.594-.781.688-.375.063-2.344.094-4.656.094-.406-.969-1.188-1.844-2.25-2.406a41.827 41.827 0 00-3.75-1.875c.719-.344 1.344-.625 1.625-.688.781-.188.875-.625 0-2.188-.219-.375-.469-1.438-.5-2.563-.031-1.813.375-3.063 1.938-3.656.313-.094.656-.156.969-.156 1.031 0 2 .563 2.406 1.438.531 1.156.281 4.156-.281 5.281-.688 1.25-.625 1.625.156 1.813.5.125 2.094.906 3.656 1.781z" />
+    </svg>
+  )
+}
+
+export function ClockIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M22.7 13.5l-2-2-2 2M21 12a9 9 0 11-1.245-4.57M12 7v5l3 2"
+        stroke="#000"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function BookmarkIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M5 6.2c0-1.12 0-1.68.218-2.108a2 2 0 01.874-.874C6.52 3 7.08 3 8.2 3h7.6c1.12 0 1.68 0 2.108.218a2 2 0 01.874.874C19 4.52 19 5.08 19 6.2V21l-7-5-7 5V6.2z"
+        stroke="#000"
+        strokeWidth={2}
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function MoreIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 1024 1024"
+      className="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M478.312 644.16c24.38 26.901 64.507 26.538 88.507-.89l270.57-309.222c7.758-8.867 6.86-22.344-2.008-30.103-8.866-7.759-22.344-6.86-30.103 2.007L534.71 615.173c-7.202 8.231-17.541 8.325-24.782.335L229.14 305.674c-7.912-8.73-21.403-9.394-30.133-1.482s-9.394 21.403-1.482 30.134l280.786 309.833z" />
+    </svg>
+  )
+}
+
+export function VideoIcon(props) {
+  return (
+    <img {...props} alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/epGAMnVkMsy.png"></img>
+  )
+}
+
+export function PhotoIcon(props) {
+  return (
+    <img {...props} alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/74AG-EvEtBm.png"></img>
+  )
+}
+
+export function SmileIcon(props) {
+  return (
+    <img {...props} alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/_RWOIsUgWGL.png"></img>
+  )
+}
+
