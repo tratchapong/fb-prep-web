@@ -66,16 +66,26 @@ function App() {
             </div>
           </div>
 
-          <div className="avatar items-center cursor-pointer">
-            <div className="w-10 h-10 rounded-full hover:scale-110">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          <div className="dropdown dropdown-end mt-2">
+            <div tabIndex={0} role="button" className="">
+              <div className="avatar items-center cursor-pointer">
+                <div className="w-10 h-10 rounded-full hover:scale-110">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
             </div>
+            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+              <li><a>Item 1</a></li>
+              <li><a>Item 2</a></li>
+            </ul>
           </div>
+
+
         </div>
       </header>
 
       <main className="relative flex bg-gray-100 border pt-14">
-{/* Lefe Sidebar : Menu */}
+        {/* Lefe Sidebar : Menu */}
         <div className="w-[350px] overflow-auto fixed top-14 h-full flex flex-col gap-2 pt-4 px-2 min-w-[220px] max-xl:w-[220px]">
           <button className="btn bg-opacity-0 border-none shadow-none justify-start hover:bg-opacity-20">
             <div className="avatar items-center cursor-pointer">
@@ -116,7 +126,7 @@ function App() {
           <div className="divider mt-0"></div>
         </div>
 
-{/* Posts Area */}
+        {/* Posts Area */}
         <div className="w-[680px] mx-auto min-h-screen my-3 flex flex-col gap-4 rounded-lg">
           {/* Create new post */}
           <div className="card bg-base-100  shadow-xl ">
@@ -200,7 +210,7 @@ function App() {
                   Like
                 </div>
                 <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
-                  <ChatIcon height="24" width="24" className='opacity-40'/>
+                  <ChatIcon height="24" width="24" className='opacity-40' />
                   Comment
                 </div>
                 <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
@@ -265,7 +275,7 @@ function App() {
                   Like
                 </div>
                 <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
-                  <ChatIcon height="24" width="24" className='opacity-40'/>
+                  <ChatIcon height="24" width="24" className='opacity-40' />
                   Comment
                 </div>
                 <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
@@ -279,7 +289,7 @@ function App() {
 
         </div>
 
-{/* Right Sidebar : Contacts */}
+        {/* Right Sidebar : Contacts */}
         <div className="w-[350px] overflow-auto fixed top-14 right-0 h-full flex flex-col gap-2 pt-4 px-2 max-xl:hidden ">
           <div className="flex justify-between text-gray-500">
             <span>Contact</span>
