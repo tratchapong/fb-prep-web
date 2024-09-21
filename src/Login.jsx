@@ -1,11 +1,20 @@
 import { FacebookTitle } from "./icons";
 import Register from "./Register";
+import useUserStore from "./stores/userStore";
 
 function Login() {
 
+  // const login = useUserStore(state => state.login)
+  // const user = useUserStore(state => state.user)
+  // const logout = useUserStore(state => state.logout)
+  // const token = useUserStore(state => state.token)
+
+  const {login, logout, user, token} = useUserStore()
+  console.log(token, !!token)
 	const hdlLogin = e => {
 		e.preventDefault()
 		console.log('login...')
+    login({identity : 'andy@ggg.mail', password: '123456'})
 	}
   return (
     <>
@@ -41,7 +50,8 @@ function Login() {
 										type='button'
                     className="btn btn-secondary text-lg text-white w-fit mx-auto"
                     onClick={() =>
-                      document.getElementById("register-modal").showModal()
+                      // document.getElementById("register-modal").showModal()
+                      logout()
                     }
                   >
                     Create new account

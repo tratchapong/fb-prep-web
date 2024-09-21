@@ -79,8 +79,6 @@ function App() {
               <li><a>Item 2</a></li>
             </ul>
           </div>
-
-
         </div>
       </header>
 
