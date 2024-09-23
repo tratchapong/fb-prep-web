@@ -11,7 +11,7 @@ const useUserStore = create( persist((set, get) => ({
     // console.log(get().token)
   },
   register : async (body)=>{
-    console.log('register')
+    const rs = await axios.post('http://localhost:8899/auth/register', body)
   },
   logout : ()=>{
     set({user : null, token:''})

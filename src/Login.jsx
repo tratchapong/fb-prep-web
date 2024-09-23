@@ -1,21 +1,36 @@
+import { useState } from "react";
 import { FacebookTitle } from "./icons";
 import Register from "./Register";
 import useUserStore from "./stores/userStore";
+import { toast } from "react-toastify";
 
 function Login() {
 
-  // const login = useUserStore(state => state.login)
-  // const user = useUserStore(state => state.user)
-  // const logout = useUserStore(state => state.logout)
-  // const token = useUserStore(state => state.token)
-
   const {login, logout, user, token} = useUserStore()
-  console.log(token, !!token)
-	const hdlLogin = e => {
-		e.preventDefault()
-		console.log('login...')
-    login({identity : 'andy@ggg.mail', password: '123456'})
+
+  const [input,setInput] = useState( { 
+    identity : '',
+    password : ''
+   })
+
+   const hdlChange = e => {
+    setInput( prv => ({...prv, [e.target.name] : e.target.value}))
+   }
+
+
+	const hdlLogin = async e => {
+    try {
+      e.preventDefault()
+      console.log('login...')
+      // login({identity : 'andy@ggg.mail', password: '123456'})
+      await login(input)
+      toast.info(token)
+    }catch(err) {
+      const errMsg = err.response?.data?.error || err.message
+			toast.error(errMsg)
+    }
 	}
+
   return (
     <>
       <div className="h-700 pt-20 pb-28 bg-[#f2f4f7]">
@@ -35,11 +50,17 @@ function Login() {
                     type="text"
                     placeholder="Email address or phone number"
                     className="input input-bordered w-full"
+                    name="identity"
+                    value={input.value}
+                    onChange={hdlChange}
                   />
                   <input
                     type="password"
                     placeholder="Password"
                     className="input input-bordered w-full"
+                    name="password"
+                    value={input.password}
+                    onChange={hdlChange}
                   />
                   <button className="btn btn-primary text-xl">Log in</button>
                   <p className="opacity-70 text-center cursor-pointer flex-grow-0">
@@ -50,8 +71,7 @@ function Login() {
 										type='button'
                     className="btn btn-secondary text-lg text-white w-fit mx-auto"
                     onClick={() =>
-                      // document.getElementById("register-modal").showModal()
-                      logout()
+                      document.getElementById("register-modal").showModal()
                     }
                   >
                     Create new account
@@ -79,3 +99,4 @@ function Login() {
 }
 
 export default Login;
+
