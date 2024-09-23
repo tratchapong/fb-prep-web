@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 function Login() {
 
-  const {login, logout, user, token} = useUserStore()
+  const {login, logout, user, token, getMe} = useUserStore()
 
   const [input,setInput] = useState( { 
     identity : '',
@@ -23,8 +23,9 @@ function Login() {
       e.preventDefault()
       console.log('login...')
       // login({identity : 'andy@ggg.mail', password: '123456'})
-      await login(input)
-      toast.info(token)
+      const rs = await login(input)
+      toast.success(`Hello, ${rs.firstName}`)
+
     }catch(err) {
       const errMsg = err.response?.data?.error || err.message
 			toast.error(errMsg)
@@ -40,7 +41,7 @@ function Login() {
             <h2 className="text-[30px] leading-8 -mt-6  w-[514px]">
               Facebook helps you connect and share with the people in your life.
             </h2>
-						<p className="text-xm text-error">** This is not real Facebook site**</p>
+						<p className="text-xm text-error">** This is not real Facebook site** { user ? `Hi, ${user.firstName}` : 'Please login' }</p>
           </div>
           <div className="flex flex-1 ">
             <div className="card bg-base-100 w-full h-[350px] shadow-xl mt-8">
@@ -71,7 +72,8 @@ function Login() {
 										type='button'
                     className="btn btn-secondary text-lg text-white w-fit mx-auto"
                     onClick={() =>
-                      document.getElementById("register-modal").showModal()
+                      // document.getElementById("register-modal").showModal()
+                      logout()
                     }
                   >
                     Create new account
