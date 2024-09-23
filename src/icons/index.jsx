@@ -250,19 +250,19 @@ export function MoreIcon(props) {
 
 export function VideoIcon(props) {
   return (
-    <img {...props} alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src={VideoIconPic}></img>
+    <img {...props} alt="" className="xz74otr" referrerPolicy="origin-when-cross-origin" src={VideoIconPic}></img>
   )
 }
 
 export function PhotoIcon(props) {
   return (
-    <img {...props} alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src={PhotoIconPic}></img>
+    <img {...props} alt="" className="xz74otr" referrerPolicy="origin-when-cross-origin" src={PhotoIconPic}></img>
   )
 }
 
 export function SmileIcon(props) {
   return (
-    <img {...props} alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src={SmileIconPic}></img>
+    <img {...props} alt="" className="xz74otr" referrerPolicy="origin-when-cross-origin" src={SmileIconPic}></img>
   )
 }
 

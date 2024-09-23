@@ -72,8 +72,8 @@ function Login() {
 										type='button'
                     className="btn btn-secondary text-lg text-white w-fit mx-auto"
                     onClick={() =>
-                      // document.getElementById("register-modal").showModal()
-                      logout()
+                      document.getElementById("register-modal").showModal()
+                      // logout()
                     }
                   >
                     Create new account

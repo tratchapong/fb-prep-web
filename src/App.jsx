@@ -23,7 +23,11 @@ import {
   ShareIcon,
 } from "./icons";
 
+import useUserStore from './stores/userStore'
+
 function App() {
+
+  const {logout, user} = useUserStore() 
   return (
     <div className="min-h-screen bg-yellow-100">
       <header className=" h-14 w-full fixed top-0 z-10 px-3 flex justify-between shadow-lg bg-white">
@@ -75,8 +79,7 @@ function App() {
               </div>
             </div>
             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-              <li><a>Item 1</a></li>
-              <li><a>Item 2</a></li>
+              <li onClick={logout} ><a>Logout</a></li>
             </ul>
           </div>
         </div>
@@ -91,7 +94,7 @@ function App() {
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
               </div>
             </div>
-            Andy Codecamp
+            {`${user.firstName} ${user.lastName}`}
           </button>
           <button className="btn bg-opacity-0 border-none shadow-none justify-start hover:bg-opacity-20">
             <FriendIcon className="w-11" />

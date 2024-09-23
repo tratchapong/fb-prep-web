@@ -1,7 +1,6 @@
 import {create} from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 const useUserStore = create( persist((set, get) => ({
   user : null,
@@ -34,7 +33,7 @@ const useUserStore = create( persist((set, get) => ({
     name: 'accessToken',
     storage : createJSONStorage(() => localStorage),
     partialize : (state) => {
-      console.log(state.token)
+      // console.log(state.token)
       return ({token : state.token})
     }
   },
