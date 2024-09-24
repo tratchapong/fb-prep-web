@@ -32,10 +32,10 @@ const useUserStore = create( persist((set, get) => ({
   {
     name: 'accessToken',
     storage : createJSONStorage(() => localStorage),
-    partialize : (state) => {
-      // console.log(state.token)
-      return ({token : state.token})
-    }
+    // partialize : (state) => {
+    //   // console.log(state.token)
+    //   return ({token : state.token})
+    // }
   },
 ))
 

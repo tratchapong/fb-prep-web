@@ -2,11 +2,12 @@ import { useState } from "react";
 import { FacebookTitle } from "./icons";
 import Register from "./Register";
 import useUserStore from "./stores/userStore";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify";;
 
 function Login() {
 
-  const {login, logout, user, token, getMe} = useUserStore()
+  const login  = useUserStore( state => state.login )
+  const user = useUserStore(state => state.user)
 
   const [input,setInput] = useState( { 
     identity : '',
@@ -21,8 +22,6 @@ function Login() {
 	const hdlLogin = async e => {
     try {
       e.preventDefault()
-      console.log('login...')
-      // login({identity : 'andy@ggg.mail', password: '123456'})
       const rs = await login(input)
       toast.success(`Hello, ${rs.firstName}`)
 
