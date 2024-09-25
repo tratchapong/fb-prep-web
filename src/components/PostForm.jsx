@@ -8,7 +8,12 @@ export default function PostForm() {
 	const user = useUserStore(state => state.user)
 	const [addPic, setAddPic] = useState(false)
 	const [file, setFile] = useState(null)
+	const [message, setMessage] = useState('')
 
+	const hdlCreatePost = e => {
+		console.log('message = ', message)
+		console.log('file = ',file)
+	}
 	return (
 		<div className='flex flex-col gap-2'>
 			<h3 className="text-xl text-center">Create post</h3>
@@ -20,15 +25,19 @@ export default function PostForm() {
 				/>
 				<div className="flex flex-col">
 					<div className="text-sm">{`${user.firstName} ${user.lastName}`}</div>
-					<select className="select bg-slate-200 select-xs max-w-xs">
-						<option disabled selected>who can see?</option>
+					<select className="select bg-slate-200 select-xs max-w-xs" defaultValue={'who can see?'}>
+						<option disabled >who can see?</option>
 						<option>public</option>
 						<option>friends</option>
 						{/* <option>only me</option> */}
 					</select>
 				</div>
 			</div>
-			<textarea className="textarea textarea-ghost w-full p-0 min-h-32" placeholder={"What do you think? "+user.firstName}></textarea>
+			<textarea 
+				className="textarea textarea-ghost w-full p-0 min-h-32" placeholder={"What do you think? "+user.firstName}
+				value={message}
+				onChange={e=>setMessage(e.target.value)}
+				></textarea>
 			{ addPic && (<AddPicture closeMe={()=>setAddPic(false)} file={file} setFile={setFile} />) }
 			<div className="flex border rounded-lg p-2 justify-between items-center">
 				<p>add with your post</p>
@@ -44,7 +53,9 @@ export default function PostForm() {
 					</div>
 				</div>
 			</div>
-			<div className="btn btn-sm btn-disabled ">POST</div>
+			<div className={`btn btn-sm ${(!file && !message) && 'btn-disabled'}`}
+				onClick={hdlCreatePost}
+			>Create Post</div>
 		</div>
 	)
 }

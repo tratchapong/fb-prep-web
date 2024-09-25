@@ -6,33 +6,6 @@ export default function PostContainer() {
   return (
     <div className="w-[680px] mx-auto min-h-screen my-3 flex flex-col gap-4 rounded-lg">
     {/* Create new post */}
-    {/* <div className="card bg-base-100  shadow-xl ">
-      <div className="card-body p-3">
-        <div className="avatar items-center gap-3 cursor-pointer">
-          <div className="w-10 h-10 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-          </div>
-          <button className="btn rounded-full flex-1 justify-start">
-            What do you think?
-          </button>
-        </div>
-        <div className="divider mt-1 mb-0"></div>
-        <div className="flex justify-between gap-3">
-          <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-2 ">
-            <VideoIcon height="24" width="24" />
-            Live / Stream
-          </div>
-          <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-2 ">
-            <PhotoIcon height="24" width="24" />
-            Photo / Video
-          </div>
-          <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-2 ">
-            <SmileIcon height="24" width="24" />
-            Activity
-          </div>
-        </div>
-      </div>
-    </div> */}
     <CreatePost />
     {/* Post */}
     <div className="card bg-base-100  shadow-xl  ">
@@ -57,7 +30,7 @@ export default function PostContainer() {
             </div>
             <div className="avatar items-center cursor-pointer">
               <div className="w-10 h-10 rounded-full !flex justify-center items-center  hover:bg-gray-200">
-                <CloseIcon className="w-5" />
+                <CloseIcon className="w-4" />
               </div>
             </div>
           </div>
@@ -121,7 +94,7 @@ export default function PostContainer() {
             </div>
             <div className="avatar items-center cursor-pointer">
               <div className="w-10 h-10 rounded-full !flex justify-center items-center  hover:bg-gray-200">
-                <CloseIcon className="w-5" />
+                <CloseIcon className="w-4" />
               </div>
             </div>
           </div>

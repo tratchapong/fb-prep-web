@@ -11,14 +11,6 @@ export default function CreatePost() {
 		<>
 		<div className="card bg-base-100  shadow-xl ">
 			<div className="card-body p-3">
-				{/* <div className="avatar items-center gap-3 cursor-pointer">
-				<div className="w-10 h-10 rounded-full">
-					<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-				</div>
-				<button className="btn rounded-full flex-1 justify-start">
-					What do you think?
-				</button>
-			</div> */}
 				<div className="flex gap-2">
 					<Avatar
 						className="w-11 h-11 rounded-full"
@@ -48,7 +40,7 @@ export default function CreatePost() {
 			</div>
 		</div>
 		{/* Modal */}
-		<dialog id="postform-modal" className="modal">
+		<dialog id="postform-modal" className="modal" >
         <div className="modal-box">
           <button
             type="button"
