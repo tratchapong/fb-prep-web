@@ -1,11 +1,12 @@
 import React from 'react'
 import { ChatIcon, CloseIcon, LikeIcon, LikeIcon2, PhotoIcon, ShareIcon, SmileIcon, ThreeDotIcon, VideoIcon } from '../icons'
+import CreatePost from './CreatePost'
 
 export default function PostContainer() {
   return (
     <div className="w-[680px] mx-auto min-h-screen my-3 flex flex-col gap-4 rounded-lg">
     {/* Create new post */}
-    <div className="card bg-base-100  shadow-xl ">
+    {/* <div className="card bg-base-100  shadow-xl ">
       <div className="card-body p-3">
         <div className="avatar items-center gap-3 cursor-pointer">
           <div className="w-10 h-10 rounded-full">
@@ -31,7 +32,8 @@ export default function PostContainer() {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
+    <CreatePost />
     {/* Post */}
     <div className="card bg-base-100  shadow-xl  ">
       <div className="card-body p-3  ">
