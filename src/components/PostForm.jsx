@@ -3,17 +3,36 @@ import useUserStore from '../stores/userStore'
 import Avatar from './Avatar'
 import { AddFriendIcon, NotificationIcon, PhotoIcon } from '../icons'
 import AddPicture from './AddPicture'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 export default function PostForm() {
 	const user = useUserStore(state => state.user)
+	const token = useUserStore(state => state.token)
 	const [addPic, setAddPic] = useState(false)
 	const [file, setFile] = useState(null)
 	const [message, setMessage] = useState('')
 
-	const hdlCreatePost = e => {
-		console.log('message = ', message)
-		console.log('file = ',file)
+	const hdlCreatePost = async e => {
+		try {
+			const formData = new FormData()
+			if(file) {
+				formData.append('image', file)
+			}
+			formData.append('message', message)
+			const rs = await axios.post('http://localhost:8899/post',formData, {
+				headers : { Authorization : `Bearer ${token}`}
+			})
+			console.log(rs.data)
+			toast.success('create new post : done')
+		}catch(err){
+			toast.error(err.message)
+			console.log(err)
+		}
+
 	}
+
+
 	return (
 		<div className='flex flex-col gap-2'>
 			<h3 className="text-xl text-center">Create post</h3>
@@ -53,7 +72,7 @@ export default function PostForm() {
 					</div>
 				</div>
 			</div>
-			<div className={`btn btn-sm ${(!file && !message) && 'btn-disabled'}`}
+			<div className={`btn btn-sm ${(!file && !message) ? 'btn-disabled' : 'btn-primary'}`}
 				onClick={hdlCreatePost}
 			>Create Post</div>
 		</div>
