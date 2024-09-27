@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ChatIcon, CloseIcon, LikeIcon, LikeIcon2, PhotoIcon, ShareIcon, SmileIcon, ThreeDotIcon, VideoIcon } from '../icons'
 import CreatePost from './CreatePost'
+import axios from 'axios'
+import useUserStore from '../stores/userStore'
 
 export default function PostContainer() {
+  const token = useUserStore(state => state.token)
+  
+  useEffect(()=>{
+    axios.get('http://localhost:8899/post', {
+      headers : {
+        Authorization : `Bearer ${token}`
+      }
+    }).then(rs => console.log(rs.data))
+  },[])
   return (
     <div className="w-[680px] mx-auto min-h-screen my-3 flex flex-col gap-4 rounded-lg">
     {/* Create new post */}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useUserStore from '../stores/userStore'
 import Avatar from './Avatar'
-import { AddFriendIcon, NotificationIcon, PhotoIcon } from '../icons'
+import { AddFriendIcon, PhotoIcon } from '../icons'
 import AddPicture from './AddPicture'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -12,9 +12,11 @@ export default function PostForm() {
 	const [addPic, setAddPic] = useState(false)
 	const [file, setFile] = useState(null)
 	const [message, setMessage] = useState('')
+	const [loading, setLoading] = useState(false)
 
 	const hdlCreatePost = async e => {
 		try {
+			setLoading(true)
 			const formData = new FormData()
 			if(file) {
 				formData.append('image', file)
@@ -28,13 +30,17 @@ export default function PostForm() {
 		}catch(err){
 			toast.error(err.message)
 			console.log(err)
+		}finally{
+			setFile(null)
+			setMessage('')
+			setLoading(false)
 		}
-
 	}
-
 
 	return (
 		<div className='flex flex-col gap-2'>
+			{ loading && <span className="loading loading-dots loading-xs"></span> }
+
 			<h3 className="text-xl text-center">Create post</h3>
 			<div className="divider mt-1 mb-0"></div>
 			<div className="flex gap-2">
