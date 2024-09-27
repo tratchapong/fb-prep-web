@@ -1,20 +1,22 @@
 import React from 'react'
 import { ChatIcon, CloseIcon, LikeIcon, LikeIcon2, ShareIcon, ThreeDotIcon } from '../icons'
+import useUserStore from '../stores/userStore'
+import Avatar from './Avatar'
 
 export default function PostItem(props) {
-	const {message} = props
+	const {post: {message, image}} = props
+	const user = useUserStore(state=>state.user)
 	return (
 		<div className="card bg-base-100  shadow-xl  ">
 		<div className="card-body p-3  ">
 			<div className="flex justify-between">
 				<div className="flex gap-3">
-					<div className="avatar items-center gap-3 cursor-pointer">
-						<div className="w-10 h-10 rounded-full">
-							<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-						</div>
-					</div>
+					<Avatar
+            className="w-11 h-11 rounded-full"
+            imgSrc={user.profileImage}
+          />
 					<div className="flex flex-col">
-						<p className="font-bold">Bobby Codecamp</p>
+						<p className="font-bold">{user.firstName} {user.lastName}</p>
 						<p className="text-xs font-bold opacity-50">59 min.</p>
 					</div>
 				</div>
@@ -32,11 +34,9 @@ export default function PostItem(props) {
 				</div>
 			</div>
 			<p>
-				Facebook captions are the text that accompany a Facebook photo,
-				video, carousel, or Reel post. They typically show up above the
-				post’s photo, video, or other media. Facebook captions often
-				include hashtags for added reach and visibility.
+				{ message }
 			</p>
+			{ image && <img src={image} alt="post-pic" />}
 			<div className="flex justify-between items-center pe-4">
 				<div className="avatar items-end cursor-pointer gap-2">
 					<div className="w-7 h-7 rounded-full !flex justify-center items-center bg-blue-500">

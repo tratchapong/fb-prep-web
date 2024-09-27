@@ -5,10 +5,12 @@ import { AddFriendIcon, PhotoIcon } from '../icons'
 import AddPicture from './AddPicture'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import usePostStore from '../stores/postStore'
 
 export default function PostForm() {
 	const user = useUserStore(state => state.user)
 	const token = useUserStore(state => state.token)
+	const getAllPosts = usePostStore(state => state.getAllPosts)
 	const [addPic, setAddPic] = useState(false)
 	const [file, setFile] = useState(null)
 	const [message, setMessage] = useState('')
@@ -25,7 +27,8 @@ export default function PostForm() {
 			const rs = await axios.post('http://localhost:8899/post',formData, {
 				headers : { Authorization : `Bearer ${token}`}
 			})
-			console.log(rs.data)
+			// console.log(rs.data)
+			getAllPosts(token)
 			toast.success('create new post : done')
 		}catch(err){
 			toast.error(err.message)
