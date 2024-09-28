@@ -66,6 +66,7 @@ export default function Header() {
 						<Avatar
 							className="w-11 h-11 rounded-full"
 							imgSrc={user.profileImage}
+							menu={true}
 						/>
 					</div>
 					<ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">

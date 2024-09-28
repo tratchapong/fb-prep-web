@@ -58,7 +58,9 @@ export default function PostItem(props) {
 							<LikeIcon2 height="24" width="24" />
 							Like
 						</div>
-						<div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
+						<div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 "
+							onClick={()=>document.getElementById('comment-modal').showModal()}
+						>
 							<ChatIcon height="24" width="24" className='opacity-40' />
 							Comment
 						</div>
@@ -67,11 +69,20 @@ export default function PostItem(props) {
 							Share
 						</div>
 					</div>
-					<div className="divider h-0 my-1"></div>
-					<CommentContainer />
 				</div>
 			</div>
-
+			<dialog id="comment-modal" className="modal" >
+				<div className="modal-box">
+					<button
+						type="button"
+						className="btn btn-sm btn-circle absolute right-2 top-2 opacity-50"
+						onClick={(e) => e.target.closest("dialog").close()}
+					>
+						✕
+					</button>
+					<CommentContainer />
+				</div>
+			</dialog>
 		</>
 	)
 }

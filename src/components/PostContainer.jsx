@@ -18,7 +18,6 @@ export default function PostContainer() {
     return <p>Loading...</p>
   }
   
-
   return (
     <div className="w-[680px] mx-auto min-h-screen my-3 flex flex-col gap-4 rounded-lg">
     {/* Create new post */}
@@ -27,10 +26,6 @@ export default function PostContainer() {
     { posts.map(el=> (
       <PostItem key={el.id} post={el}/>
     ))}
-    <hr />
-
-
-
   </div>
   )
 }
