@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 import CommentContainer from './CommentContainer'
 
 export default function PostItem(props) {
-	const { post: { message, image, user } } = props
+	const { post: { message, image, user, id } } = props
 	// const user = useUserStore(state=>state.user)
 	return (
 		<>
@@ -52,7 +52,7 @@ export default function PostItem(props) {
 						</div>
 					</div>
 
-					<div className="divider h-0 my-1"></div>
+					<div className="divider h-0 my-0"></div>
 					<div className="flex justify-between gap-3">
 						<div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
 							<LikeIcon2 height="24" width="24" />
@@ -67,8 +67,8 @@ export default function PostItem(props) {
 							Share
 						</div>
 					</div>
-					<div className="divider h-0 my-1"></div>
-					<CommentContainer />
+					<div className="divider h-0 my-0"></div>
+					<CommentContainer postId={id} />
 				</div>
 			</div>
 
