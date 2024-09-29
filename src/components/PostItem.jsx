@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 import CommentContainer from './CommentContainer'
 
 export default function PostItem(props) {
-	const { post: { message, image, user, id } } = props
+	const { post: { message, image, user, id, comments} } = props
 	// const user = useUserStore(state=>state.user)
 	return (
 		<>
@@ -47,7 +47,7 @@ export default function PostItem(props) {
 							<p className="opacity-60">99</p>
 						</div>
 						<div className="flex gap-2">
-							<p className="opacity-60">2 comments</p>
+							<p className="opacity-60">{comments.length} comments</p>
 							<p className="opacity-60">4 shares</p>
 						</div>
 					</div>
@@ -68,7 +68,7 @@ export default function PostItem(props) {
 						</div>
 					</div>
 					<div className="divider h-0 my-0"></div>
-					<CommentContainer postId={id} />
+					<CommentContainer postId={id} comments={comments} />
 				</div>
 			</div>
 

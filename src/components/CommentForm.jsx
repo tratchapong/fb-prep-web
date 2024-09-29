@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import useUserStore from "../stores/userStore";
 import Avatar from "./Avatar";
 import { SendMessageIcon } from "../icons";
+import { toast } from "react-toastify";
+import usePostStore from "../stores/postStore";
+import axios from "axios";
 
 export default function CommentForm(props) {
   const {postId} = props
   const user = useUserStore((state) => state.user);
+  const token = useUserStore( state => state.token)
+  const getAllPosts = usePostStore(state=> state.getAllPosts)
   const [rows,setRows] = useState(1)
   const [message, setMessage] = useState('')
 
@@ -17,13 +22,25 @@ export default function CommentForm(props) {
     setMessage(e.target.value)
   }
 
-  const hdlSendComment = e => {
-    const body = {
-      message,
-      postId
+  const hdlSendComment =async e => {
+    try {
+      const body = {
+        message,
+        postId
+      }
+      const rs = await axios.post('http://localhost:8899/comment',body,{
+        headers: {
+          Authorization : `Bearer ${token}`
+        }
+      })
+      setMessage('')
+      getAllPosts(token)
+    }catch(err) {
+      const errMsg = err.response?.data?.error || err.message
+			toast.error(errMsg)
     }
-    console.log(body)
-    setMessage('')
+
+
   }
   return (
     <div className="relative">

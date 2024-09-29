@@ -15,7 +15,6 @@ const usePostStore = create( (set, get)=>({
     console.log(rs.data.posts)
     // console.log(get().posts)
     set({posts : rs.data.posts, loading: false})
-
   }
 }))
 

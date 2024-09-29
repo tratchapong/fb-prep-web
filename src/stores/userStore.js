@@ -2,6 +2,7 @@ import {create} from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import axios from 'axios'
 
+
 const useUserStore = create( persist((set, get) => ({
   user : null,
   token : '',
