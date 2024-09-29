@@ -11,6 +11,7 @@ export default function CommentForm(props) {
   const user = useUserStore((state) => state.user);
   const token = useUserStore( state => state.token)
   const getAllPosts = usePostStore(state=> state.getAllPosts)
+  const postComment = usePostStore(state => state.postComment)
   const [rows,setRows] = useState(1)
   const [message, setMessage] = useState('')
 
@@ -28,17 +29,31 @@ export default function CommentForm(props) {
         message,
         postId
       }
-      const rs = await axios.post('http://localhost:8899/comment',body,{
-        headers: {
-          Authorization : `Bearer ${token}`
-        }
-      })
+      postComment(token, body, user)
       setMessage('')
-      getAllPosts(token)
+      // getAllPosts(token)
     }catch(err) {
       const errMsg = err.response?.data?.error || err.message
 			toast.error(errMsg)
     }
+
+  // const hdlSendComment =async e => {
+  //   try {
+  //     const body = {
+  //       message,
+  //       postId
+  //     }
+  //     const rs = await axios.post('http://localhost:8899/comment',body,{
+  //       headers: {
+  //         Authorization : `Bearer ${token}`
+  //       }
+  //     })
+  //     setMessage('')
+  //     getAllPosts(token)
+  //   }catch(err) {
+  //     const errMsg = err.response?.data?.error || err.message
+	// 		toast.error(errMsg)
+  //   }
 
 
   }
