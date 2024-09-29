@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   ChatIcon,
   CloseIcon,
@@ -10,12 +10,21 @@ import {
 import useUserStore from "../stores/userStore";
 import Avatar from "./Avatar";
 import CommentContainer from "./CommentContainer";
+import PostFormEdit from "./PostFormEdit";
 
 export default function PostItem(props) {
   const {
-    post: { message, image, user, id, comments },
+    post: { message, image, user, id, comments, userId },
   } = props;
-  // const user = useUserStore(state=>state.user)
+  const currentUser = useUserStore((state) => state.user);
+	const modalRef = useRef()
+	const [editMode, setEditMode] = useState(false)
+
+	const showEditModal = e => {
+		modalRef.current.showModal()
+		setEditMode(true)
+	}
+
   return (
     <>
       <div className="card bg-base-100  shadow-xl  ">
@@ -34,26 +43,30 @@ export default function PostItem(props) {
               </div>
             </div>
             <div className="flex gap-2">
-              <div className="dropdown ">
-                <div tabIndex={0} role="button" className="">
-                  <div className="avatar items-center cursor-pointer dropdown">
-                    <div className="w-10 h-10 rounded-full !flex justify-center items-center  hover:bg-gray-200">
-                      <ThreeDotIcon className="w-6" />
+              {userId === currentUser.id && (
+                <div className="dropdown ">
+                  <div tabIndex={0} role="button" className="">
+                    <div className="avatar items-center cursor-pointer dropdown">
+                      <div className="w-10 h-10 rounded-full !flex justify-center items-center  hover:bg-gray-200">
+                        <ThreeDotIcon className="w-6" />
+                      </div>
                     </div>
                   </div>
+                  {
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                    >
+                      <li onClick={showEditModal}>
+                        <a>Edit</a>
+                      </li>
+                      <li>
+                        <a>Delete</a>
+                      </li>
+                    </ul>
+                  }
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-                >
-                  <li>
-                    <a>Edit</a>
-                  </li>
-                  <li>
-                    <a>Delete</a>
-                  </li>
-                </ul>
-              </div>
+              )}
               <div className="avatar items-center cursor-pointer">
                 <div className="w-10 h-10 rounded-full !flex justify-center items-center  hover:bg-gray-200">
                   <CloseIcon className="w-4" />
@@ -101,6 +114,21 @@ export default function PostItem(props) {
           <CommentContainer postId={id} comments={comments} />
         </div>
       </div>
+      {/* EditFormModal */}
+      <dialog id="editform-modal" className="modal" ref={modalRef}
+				onClose={()=>setEditMode(false)}
+			>
+        <div className="modal-box">
+          <button
+            type="button"
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            onClick={(e) => e.target.closest("dialog").close()}
+          >
+            ✕
+          </button>
+          {editMode && <PostFormEdit post={props.post} />}
+        </div>
+      </dialog>
     </>
   );
 }
