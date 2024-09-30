@@ -45,7 +45,7 @@ export default function PostFormEdit(props) {
 		<div className='flex flex-col gap-2'>
 			{ loading && <span className="loading loading-dots loading-xs"></span> }
 
-			<h3 className="text-xl text-center">Create post</h3>
+			<h3 className="text-xl text-center">Update post</h3>
 			<div className="divider mt-1 mb-0"></div>
 			<div className="flex gap-2">
 				<Avatar
