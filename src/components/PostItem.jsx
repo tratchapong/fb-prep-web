@@ -11,20 +11,37 @@ import useUserStore from "../stores/userStore";
 import Avatar from "./Avatar";
 import CommentContainer from "./CommentContainer";
 import usePostStore from "../stores/postStore";
+import { toast } from "react-toastify";
 // import PostFormEdit from "./PostFormEdit";
 
 export default function PostItem(props) {
   const {
     post: { message, image, user, id, comments, userId },
   } = props;
+	const token = useUserStore( state => state.token)
   const currentUser = useUserStore((state) => state.user);
 	const setCurrentPost = usePostStore(state => state.setCurrentPost)
+	const deletePost = usePostStore(state => state.deletePost)
 	// const modalRef = useRef()
 	// const [editMode, setEditMode] = useState(false)
 
 	const showEditModal = e => {
 		setCurrentPost(id)
 		document.getElementById('editform-modal').showModal()
+	}
+
+	const hdlDelete = async e => {
+		try{
+			if(!confirm("Delete this post?")) {
+				return console.log('cancel delete')
+			}
+			await deletePost(token, id)
+			toast.success('Delete done')
+		}catch(err) {
+			const errMsg = err.response?.data?.error || err.message
+			toast.error(errMsg)
+			console.log(err)
+		}
 	}
 
   return (
@@ -62,7 +79,7 @@ export default function PostItem(props) {
                       <li onClick={showEditModal}>
                         <a>Edit</a>
                       </li>
-                      <li>
+                      <li onClick={hdlDelete}>
                         <a>Delete</a>
                       </li>
                     </ul>

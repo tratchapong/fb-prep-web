@@ -8,8 +8,8 @@ import PostFormEdit from "./PostFormEdit";
 export default function PostContainer() {
   const token = useUserStore((state) => state.token);
   const posts = usePostStore((state) => state.posts);
-  const activePost = usePostStore(state => state.activePost)
-  const setCurrentPost = usePostStore(state => state.setCurrentPost)
+  const activePost = usePostStore((state) => state.activePost);
+  const setCurrentPost = usePostStore((state) => state.setCurrentPost);
   const loading = usePostStore((state) => state.loading);
   const getAllPosts = usePostStore((state) => state.getAllPosts);
 
@@ -18,7 +18,7 @@ export default function PostContainer() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <span className="loading loading-dots loading-xs"></span>;
   }
 
   return (
@@ -49,6 +49,7 @@ export default function PostContainer() {
           {activePost && <PostFormEdit post={activePost} />}
         </div>
       </dialog>
+
     </>
   );
 }

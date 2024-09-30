@@ -30,7 +30,8 @@ export default function PostFormEdit(props) {
 			await updatePost(token, post.id, formData)
 			toast.success('Update post : done')
 		}catch(err){
-			toast.error(err.message)
+			const errMsg = err.response?.data?.error || err.message
+			toast.error(errMsg)
 			console.log(err)
 		}finally{
 			setFile(null)

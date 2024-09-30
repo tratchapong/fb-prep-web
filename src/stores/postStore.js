@@ -49,7 +49,6 @@ const usePostStore = create( (set, get)=>({
     // console.log(get().activePost)
   },
   updatePost : async (token, id, body) => {
-    // set({loading: true})
     const rs = await axios.put(`http://localhost:8899/post/${id}`,body, {
       headers : { Authorization : `Bearer ${token}`}
     })
@@ -58,6 +57,14 @@ const usePostStore = create( (set, get)=>({
       posts : state.posts.map(el => {
        return (el.id===id ? {...el, ...rs.data} :  el)
       })
+    }))
+  },
+  deletePost : async (token, id) => {
+    const rs = await axios.delete(`http://localhost:8899/post/${id}`, {
+      headers : { Authorization : `Bearer ${token}`}
+    })
+    set( state => ({
+      posts : state.posts.filter(el => el.id !== id)
     }))
   }
 }))
