@@ -10,19 +10,21 @@ import {
 import useUserStore from "../stores/userStore";
 import Avatar from "./Avatar";
 import CommentContainer from "./CommentContainer";
-import PostFormEdit from "./PostFormEdit";
+import usePostStore from "../stores/postStore";
+// import PostFormEdit from "./PostFormEdit";
 
 export default function PostItem(props) {
   const {
     post: { message, image, user, id, comments, userId },
   } = props;
   const currentUser = useUserStore((state) => state.user);
-	const modalRef = useRef()
-	const [editMode, setEditMode] = useState(false)
+	const setCurrentPost = usePostStore(state => state.setCurrentPost)
+	// const modalRef = useRef()
+	// const [editMode, setEditMode] = useState(false)
 
 	const showEditModal = e => {
-		modalRef.current.showModal()
-		setEditMode(true)
+		setCurrentPost(id)
+		document.getElementById('editform-modal').showModal()
 	}
 
   return (
@@ -114,21 +116,7 @@ export default function PostItem(props) {
           <CommentContainer postId={id} comments={comments} />
         </div>
       </div>
-      {/* EditFormModal */}
-      <dialog id="editform-modal" className="modal" ref={modalRef}
-				onClose={()=>setEditMode(false)}
-			>
-        <div className="modal-box">
-          <button
-            type="button"
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-            onClick={(e) => e.target.closest("dialog").close()}
-          >
-            ✕
-          </button>
-          {editMode && <PostFormEdit post={props.post} />}
-        </div>
-      </dialog>
+
     </>
   );
 }

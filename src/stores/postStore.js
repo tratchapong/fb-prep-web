@@ -39,6 +39,14 @@ const usePostStore = create( (set, get)=>({
       newPosts[idx].comments.push(newComment)
       return ({posts : newPosts})
     })
+  },
+  setCurrentPost : (id) => {
+    if(id === -1) {
+      return set({activePost: null})
+    }
+    let idx = get().posts.findIndex(el => el.id === id)
+    set(state => ({activePost : state.posts[idx]}))
+    console.log(get().activePost)
   }
 }))
 
