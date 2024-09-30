@@ -46,7 +46,19 @@ const usePostStore = create( (set, get)=>({
     }
     let idx = get().posts.findIndex(el => el.id === id)
     set(state => ({activePost : state.posts[idx]}))
-    console.log(get().activePost)
+    // console.log(get().activePost)
+  },
+  updatePost : async (token, id, body) => {
+    // set({loading: true})
+    const rs = await axios.put(`http://localhost:8899/post/${id}`,body, {
+      headers : { Authorization : `Bearer ${token}`}
+    })
+    console.log(rs.data)
+    set(state => ({
+      posts : state.posts.map(el => {
+       return (el.id===id ? {...el, ...rs.data} :  el)
+      })
+    }))
   }
 }))
 

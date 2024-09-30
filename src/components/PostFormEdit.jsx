@@ -9,10 +9,11 @@ import usePostStore from '../stores/postStore'
 
 export default function PostFormEdit(props) {
 	const {post} = props
-	console.log(post)
+	// console.log(post)
 	const user = useUserStore(state => state.user)
 	const token = useUserStore(state => state.token)
 	const getAllPosts = usePostStore(state => state.getAllPosts)
+	const updatePost = usePostStore(state => state.updatePost)
 	const [addPic, setAddPic] = useState(false)
 	const [file, setFile] = useState(null)
 	const [message, setMessage] = useState(post.message)
@@ -26,11 +27,7 @@ export default function PostFormEdit(props) {
 				formData.append('image', file)
 			}
 			formData.append('message', message)
-			const rs = await axios.put(`http://localhost:8899/post/${post.id}`,formData, {
-				headers : { Authorization : `Bearer ${token}`}
-			})
-			console.log(rs.data)
-			getAllPosts(token)
+			await updatePost(token, post.id, formData)
 			toast.success('Update post : done')
 		}catch(err){
 			toast.error(err.message)
@@ -39,6 +36,7 @@ export default function PostFormEdit(props) {
 			setFile(null)
 			setMessage('')
 			setLoading(false)
+			document.getElementById('editform-modal').close()
 		}
 	}
 
