@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 
 export default function PostItem(props) {
   const {
-    post: { message, image, user, id, comments, userId },
+    post: { message, image, user, id, comments, likes, userId },
   } = props;
 	const token = useUserStore( state => state.token)
   const currentUser = useUserStore((state) => state.user);
@@ -106,7 +106,7 @@ export default function PostItem(props) {
               <div className="w-7 h-7 rounded-full !flex justify-center items-center bg-blue-500">
                 <LikeIcon className="w-5" />
               </div>
-              <p className="opacity-60">99</p>
+              <p className="opacity-60">{likes.length}</p>
             </div>
             <div className="flex gap-2">
               <p className="opacity-60">{comments.length} comments</p>
