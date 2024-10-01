@@ -22,6 +22,9 @@ export default function PostItem(props) {
   const currentUser = useUserStore((state) => state.user);
 	const setCurrentPost = usePostStore(state => state.setCurrentPost)
 	const deletePost = usePostStore(state => state.deletePost)
+  const likePost = usePostStore(state => state.likePost)
+  const unLikePost = usePostStore(state => state.unLikePost)
+  const getAllPosts = usePostStore(state => state.getAllPosts)
 	// const modalRef = useRef()
 	// const [editMode, setEditMode] = useState(false)
 
@@ -43,6 +46,17 @@ export default function PostItem(props) {
 			console.log(err)
 		}
 	}
+
+  const checkLike = () => likes.findIndex(el => el.userId === currentUser.id) !== -1
+
+  const hdlLikeClick = async e => {
+    if(checkLike()) {
+     await unLikePost(token, id, currentUser.id)
+    //  getAllPosts(token)
+    }else {
+      await likePost(token, id)
+    }
+  }
 
   return (
     <>
@@ -116,9 +130,11 @@ export default function PostItem(props) {
 
           <div className="divider h-0 my-0"></div>
           <div className="flex justify-between gap-3">
-            <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
-              <LikeIcon2 height="24" width="24" />
-              Like
+            <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 "
+              onClick={hdlLikeClick}
+            >
+              <LikeIcon2 isLike={checkLike()} height="24" width="24" />
+              <span className={checkLike() ? 'text-blue-800 font-semibold' : ''}>Like</span>
             </div>
             <div className="flex gap-3 justify-center cursor-pointer hover:bg-gray-300 rounded-lg flex-1 py-1 ">
               <ChatIcon height="24" width="24" className="opacity-40" />

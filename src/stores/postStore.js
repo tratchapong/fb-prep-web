@@ -66,7 +66,29 @@ const usePostStore = create( (set, get)=>({
     set( state => ({
       posts : state.posts.filter(el => el.id !== id)
     }))
-  }
+  },
+  likePost : async (token, id) => {
+    const rs = await axios.post(`http://localhost:8899/like/`, {postId : id}, {
+      headers : { Authorization : `Bearer ${token}`}
+    })
+    set( state => ({
+      posts : state.posts.map(el => {
+        return el.id === id ? {...el, likes : [...el.likes,rs.data ]} : el
+      })
+    }))
+  },
+  unLikePost : async (token, postId, userId) => {
+    const rs = await axios.delete(`http://localhost:8899/like/${postId}`, {
+      headers : { Authorization : `Bearer ${token}`}
+    })
+    set(state => ({
+      posts : state.posts.map(el => {
+        return el.id === postId 
+          ? {...el, likes : el.likes.filter( like => !(like.postId===postId && like.userId === userId)  ) }
+          : el
+      })
+    }))
+  },
 }))
 
 
